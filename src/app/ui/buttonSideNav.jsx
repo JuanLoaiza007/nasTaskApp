@@ -11,7 +11,7 @@ export default function ButtonSideNav({ name }) {
       className={`flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 hover:bg-blue-400 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3
             ${
               pathname === `/${name.toLowerCase()}`
-                ? "bg-blue-700 text-white"
+                ? "bg-blue-600 text-white"
                 : ""
             }`}
     >

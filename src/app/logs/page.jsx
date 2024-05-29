@@ -2,7 +2,9 @@ import MiniCardLogs from "./MiniCardLogs";
 import axios from "axios";
 
 async function getLogs() {
-  const { data } = await axios.get("http://localhost:3000/api/logs");
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/logs`
+  );
   return data;
 }
 

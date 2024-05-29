@@ -2,7 +2,9 @@ import MiniCardProyecto from "./MiniCardProyecto";
 import axios from "axios";
 
 async function getProyectos() {
-  const { data } = await axios.get("http://localhost:3000/api/proyectos");
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/proyectos`
+  );
   return data;
 }
 

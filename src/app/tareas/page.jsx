@@ -2,7 +2,9 @@ import MiniCardTarea from "./MiniCardTarea";
 import axios from "axios";
 
 async function getProyectos() {
-  const { data } = await axios.get("http://localhost:3000/api/tareas");
+  const { data } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/tareas`
+  );
   return data;
 }
 

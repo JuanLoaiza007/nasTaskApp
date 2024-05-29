@@ -17,7 +17,7 @@ export default function MiniCardProyecto({ proyecto }) {
 
   return (
     <>
-      <div className="flex flex-col space-y-2 p-4 rounded-lg bg-blue-100 my-4">
+      <div className="flex flex-col space-y-2 p-4 rounded-lg bg-blue-100 my-4 hover:bg-blue-400 hover:text-white hover:cursor-pointer">
         <div className="flex justify-between w-full p-2">
           <div className="text-lg font-bold my-auto px-2">
             {proyecto.nombre}

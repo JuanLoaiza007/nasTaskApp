@@ -1,20 +1,6 @@
+import { formatDate } from "@/utils/formatDate";
+
 export default function MiniCardLogs({ log }) {
-  const formatDate = (dateString) => {
-    if (!dateString) return "Fecha no disponible";
-
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "Fecha inválida";
-
-    const options = {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Intl.DateTimeFormat("es-ES", options).format(date);
-  };
-
   return (
     <>
       <div className="flex flex-col space-y-2 p-4 rounded-lg bg-blue-100 my-4 hover:bg-slate-200">

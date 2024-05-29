@@ -2,6 +2,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SideNav from "./ui/sideNav";
+import SideEditor from "./ui/sideEditor";
 
 export const metadata = {
   title: "Create Next App",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
             {children}
           </div>
+          <SideEditor />
         </div>
       </body>
     </html>

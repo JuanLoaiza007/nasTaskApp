@@ -1,7 +1,7 @@
 import MiniCardTarea from "./MiniCardTarea";
 import axios from "axios";
 
-async function getProyectos() {
+async function getTareas() {
   const { data } = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/tareas`
   );
@@ -9,7 +9,7 @@ async function getProyectos() {
 }
 
 export default async function TareasPage() {
-  const tareas = await getProyectos();
+  const tareas = await getTareas();
 
   return (
     <>

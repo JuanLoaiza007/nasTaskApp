@@ -39,13 +39,19 @@ export default function ProjectForm({ proyecto }) {
       return;
     }
 
-    if (!proyecto.id) {
-      const res = await axios.post("/api/proyectos", proyectoData);
-    } else {
-      const res = await axios.put(
-        `/api/proyectos/${proyecto.id}`,
-        proyectoData
-      );
+    try {
+      if (!proyecto.id) {
+        const res = await axios.post("/api/proyectos", proyectoData);
+      } else {
+        const res = await axios.put(
+          `/api/proyectos/${proyecto.id}`,
+          proyectoData
+        );
+      }
+    } catch (error) {
+      alert("Ha ocurrido un error, porfavor intente de nuevo.");
+      console.log(`El error es: ${error}`);
+      return;
     }
 
     useSideEditorState.setIsEditing(false);

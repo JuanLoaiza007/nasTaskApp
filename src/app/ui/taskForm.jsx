@@ -36,10 +36,17 @@ export default function TaskForm({ tarea }) {
       return;
     }
 
-    if (!tarea.id) {
-      const res = await axios.post("/api/tareas", taskData);
-    } else {
-      const res = await axios.put(`/api/tareas/${tarea.id}`, taskData);
+    try {
+      if (!tarea.id) {
+        const res = await axios.post("/api/tareas", taskData);
+      } else {
+        const res = await axios.put(`/api/tareas/${tarea.id}`, taskData);
+      }
+    } catch (error) {
+      alert("Ha ocurrido un error, porfavor intente de nuevo.");
+      console.log(`Objeto es: ${taskData}\nId es: ${tarea.id}`);
+      console.log(`El error es: ${error}`);
+      return;
     }
 
     useSideEditorState.setIsEditing(false);

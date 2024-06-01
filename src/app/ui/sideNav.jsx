@@ -4,24 +4,40 @@ import Link from "next/link";
 import { AppState } from "@/states/AppState";
 import { usePathname } from "next/navigation";
 import ButtonSideNav from "./buttonSideNav";
+import { useState } from "react";
 
 export default function SideNav() {
   const useAppState = AppState();
+  const [showMenu, setShowMenu] = useState(false);
   const pathname = usePathname();
 
-  function handleClick() {}
+  const handleShowMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   return (
-    <div className="flex flex-col h-full w-full md:w-48 px-3 py-4 md:px-2 md:flex-shrink-0 bg-blue-100">
-      <div className="mb-4 bg-blue-800 text-white text-center p-4 rounded-lg">
-        <Link href="/" className="text-2xl font-bold ">
-          <p>{useAppState.appName}</p>
-          <p className="text-sm font-medium text-slate-200">
-            v{useAppState.appVersion}
-          </p>
-        </Link>
+    <div className="flex flex-col flex-wrap md:h-full py-2 px-4 bg-blue-100">
+      <div className="flex flex-row content-center justify-between md:flex-col flex-wrap bg-blue-800 text-white rounded-xl">
+        <div className="p-4 mb-4 text-white rounded-lg">
+          <Link href="/" className="text-2xl font-bold ">
+            <p>{useAppState.appName}</p>
+            <p className="text-sm font-medium text-slate-200">
+              v{useAppState.appVersion}
+            </p>
+          </Link>
+        </div>
+        <button
+          className="p-4 m-4 border-2 border-white text-bold rounded-full hover:bg-blue-800 block md:hidden"
+          onClick={handleShowMenu}
+        >
+          {showMenu ? "^" : "☰"}
+        </button>
       </div>
-      <div className="flex flex-col space-y-2">
+      <div
+        className={`flex flex-col flex-wrap text-center ${
+          showMenu ? "block" : "hidden"
+        } md:block`}
+      >
         <ButtonSideNav name="Proyectos" />
         <ButtonSideNav name="Tareas" />
         <ButtonSideNav name="Logs" />

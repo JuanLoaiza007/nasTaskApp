@@ -27,10 +27,14 @@ export default function SideNav() {
           </Link>
         </div>
         <button
-          className="p-4 m-4 border-2 border-white text-bold rounded-full hover:bg-blue-800 block md:hidden"
+          className={`p-4 m-4 border-2 border-white text-bold rounded-full block md:hidden ${
+            showMenu
+              ? "bg-white text-blue-800 hover:bg-blue-200"
+              : "text-white hover:bg-white hover:text-blue-600"
+          } transition ease-in-out duration-200`}
           onClick={handleShowMenu}
         >
-          {showMenu ? "^" : "☰"}
+          ☰
         </button>
       </div>
       <div

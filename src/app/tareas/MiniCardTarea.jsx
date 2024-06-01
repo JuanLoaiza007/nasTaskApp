@@ -1,7 +1,7 @@
 "use client";
 import { SideEditorState } from "@/states/SideEditorState";
 import { formatDate } from "@/utils/formatDate";
-import TaskForm from "@/app/ui/taskForm";
+import TaskForm from "@/app/components/taskForm";
 
 export default function MiniCardTarea({ tarea }) {
   const useSideEditorState = SideEditorState();

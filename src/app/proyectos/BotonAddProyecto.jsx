@@ -1,5 +1,5 @@
 "use client";
-import ProjectForm from "@/app/ui/projectForm";
+import ProjectForm from "@/app/components/projectForm";
 import { SideEditorState } from "@/states/SideEditorState";
 
 export default function BotonAddProyecto() {

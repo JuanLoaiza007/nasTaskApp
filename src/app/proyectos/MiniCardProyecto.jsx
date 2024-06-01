@@ -1,7 +1,7 @@
 // [MiniCardProyecto.jsx]
 "use client";
 import { SideEditorState } from "@/states/SideEditorState";
-import ProjectForm from "@/app/ui/projectForm";
+import ProjectForm from "@/app/components/projectForm";
 import { formatDate } from "@/utils/formatDate";
 
 export default function MiniCardProyecto({ proyecto }) {

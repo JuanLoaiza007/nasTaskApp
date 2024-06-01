@@ -1,8 +1,7 @@
 // [layout.jsx]
-import { Inter } from "next/font/google";
 import "./globals.css";
-import SideNav from "./ui/sideNav";
-import SideEditor from "./ui/sideEditor";
+import SideNav from "@/app/components/sideNav";
+import SideEditor from "@/app/components/sideEditor";
 
 export const metadata = {
   title: "Create Next App",

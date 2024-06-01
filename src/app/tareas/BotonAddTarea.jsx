@@ -1,5 +1,5 @@
 "use client";
-import TaskForm from "@/app/ui/taskForm";
+import TaskForm from "@/app/components/taskForm";
 import { SideEditorState } from "@/states/SideEditorState";
 
 export default function BotonAddTarea() {

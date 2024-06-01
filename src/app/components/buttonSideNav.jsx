@@ -19,7 +19,7 @@ export default function ButtonSideNav({ name, href }) {
               pathname === `/${name.toLowerCase()}`
                 ? "bg-custom-blue text-white font-bold"
                 : ""
-            }`}
+            } transition ease-in-out duration-50`}
     >
       {name}
     </Link>

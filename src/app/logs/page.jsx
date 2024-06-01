@@ -13,7 +13,6 @@ export default async function LogsPage() {
 
   return (
     <>
-      <div className="text-4xl font-bold text-center">Logs</div>
       <div className="">
         {logs.map((log) => (
           <MiniCardLogs key={log.id} log={log} />

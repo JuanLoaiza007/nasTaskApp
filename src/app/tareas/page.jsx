@@ -1,6 +1,5 @@
 import MiniCardTarea from "./MiniCardTarea";
 import axios from "axios";
-import BotonAddTarea from "@/app/tareas/BotonAddTarea";
 
 async function getTareas() {
   const { data } = await axios.get(
@@ -14,10 +13,6 @@ export default async function TareasPage() {
 
   return (
     <>
-      <div className="text-4xl font-bold text-center">
-        Tareas
-        <BotonAddTarea />
-      </div>
       <div className="">
         {tareas.map((tarea) => (
           <MiniCardTarea key={tarea.id} tarea={tarea} />

@@ -9,7 +9,7 @@ export default function MiniCardTarea({ tarea }) {
   return (
     <>
       <div
-        className="flex flex-col space-y-2 p-4 rounded-lg bg-blue-100 my-4 hover:bg-blue-400 hover:text-white hover:cursor-pointer"
+        className="flex flex-col space-y-2 p-4 rounded-lg bg-blue-100 my-4 hover:bg-blue-400 hover:text-white hover:cursor-pointer transition ease-in-out duration-50"
         onClick={() => {
           useSideEditorState.setIsEditing(true);
           useSideEditorState.setComponent(<TaskForm tarea={tarea} />);

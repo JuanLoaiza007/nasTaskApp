@@ -14,7 +14,7 @@ export default function ButtonSideNav({ name, href }) {
     <Link
       href={`/${name.toLowerCase()}`}
       onClick={handleClick}
-      className={`flex h-12 bg-white p-4 my-1 items-center rounded-xl hover:bg-blue-200 hover:text-black
+      className={`flex h-12 bg-white p-4 my-1 items-center rounded-xl md:hover:bg-blue-200 md:hover:text-black
             ${
               pathname === `/${name.toLowerCase()}`
                 ? "bg-custom-blue text-white font-bold"

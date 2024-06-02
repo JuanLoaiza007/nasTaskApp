@@ -2,10 +2,14 @@ import MiniCard from "@/app/components/MiniCard";
 import axios from "axios";
 
 async function getTareas() {
-  const { data } = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/tareas`
-  );
-  return data;
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/tareas`
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default async function TareasPage() {

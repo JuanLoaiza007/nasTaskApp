@@ -2,10 +2,14 @@ import MiniCard from "../components/MiniCard";
 import axios from "axios";
 
 async function getLogs() {
-  const { data } = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/logs`
-  );
-  return data;
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/logs`
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default async function LogsPage() {

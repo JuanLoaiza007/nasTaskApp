@@ -56,7 +56,7 @@ export default function TaskForm({ tarea }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="h-full mx-auto p-4 bg-white shadow-md rounded-md">
+      <div className="h-full mx-auto p-4 bg-white titulo rounded-xl">
         <h2 className="text-2xl font-bold mb-4">
           {tarea.id ? "Editar Tarea" : "Crear Tarea"}
         </h2>
@@ -65,7 +65,7 @@ export default function TaskForm({ tarea }) {
           type="text"
           id="nombre"
           name="nombre"
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md titulo focus:ring focus:ring-opacity-50"
           value={taskData.nombre}
           onChange={(e) => setTaskData({ ...taskData, nombre: e.target.value })}
         />
@@ -74,7 +74,7 @@ export default function TaskForm({ tarea }) {
           type="text"
           id="proyecto_id"
           name="proyecto_id"
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md titulo focus:ring focus:ring-opacity-50"
           value={taskData.proyecto_id}
           onChange={(e) =>
             setTaskData({ ...taskData, proyecto_id: e.target.value })
@@ -84,7 +84,7 @@ export default function TaskForm({ tarea }) {
         <textarea
           id="descripcion"
           name="descripcion"
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md titulo focus:ring focus:ring-opacity-50"
           value={taskData.descripcion}
           onChange={(e) =>
             setTaskData({ ...taskData, descripcion: e.target.value })
@@ -95,22 +95,22 @@ export default function TaskForm({ tarea }) {
           type="date"
           id="fecha_terminacion"
           name="fecha_terminacion"
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md titulo focus:ring focus:ring-opacity-50"
           value={taskData.fecha_terminacion}
           onChange={(e) =>
             setTaskData({ ...taskData, fecha_terminacion: e.target.value })
           }
         />
       </div>
-      <div className="flex flex-row space-x-4">
+      <div className="flex flex-row mx-2 px-2 my-4 justify-between">
         <button
           type="submit"
-          className="py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700"
+          className="py-2 px-4 bg-blue-600 text-white font-semibold rounded-md titulo hover:bg-blue-700"
         >
           {tarea.id ? "Actualizar" : "Crear"}
         </button>
         <button
-          className="py-2 px-4 bg-red-600 text-white font-semibold rounded-md shadow-md hover:bg-red-700"
+          className="py-2 px-4 bg-red-600 text-white font-semibold rounded-md titulo hover:bg-red-700"
           onClick={() => useSideEditorState.setIsEditing(false)}
         >
           Cancelar

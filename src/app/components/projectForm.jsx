@@ -62,7 +62,7 @@ export default function ProjectForm({ proyecto }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="h-full mx-auto p-4 bg-white shadow-md rounded-md"
+      className="h-full mx-auto p-4 bg-white rounded-xl"
     >
       <h2 className="text-2xl font-bold mb-4">
         {proyecto.id ? "Editar Proyecto" : "Crear Proyecto"}
@@ -77,7 +77,7 @@ export default function ProjectForm({ proyecto }) {
           value={proyectoData.nombre}
           onChange={handleChange}
           required
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-opacity-50"
         />
       </div>
       <div className="mb-4">
@@ -88,7 +88,7 @@ export default function ProjectForm({ proyecto }) {
           value={proyectoData.descripcion}
           name="descripcion"
           onChange={handleChange}
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-opacity-50"
         ></textarea>
       </div>
       <div className="mb-4">
@@ -100,18 +100,18 @@ export default function ProjectForm({ proyecto }) {
           name="fecha_terminacion"
           value={proyectoData.fechaTerminacion}
           onChange={handleChange}
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50"
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-opacity-50"
         />
       </div>
-      <div className="flex flex-row space-x-4">
+      <div className="flex flex-row mx-2 px-2 my-4 justify-between">
         <button
           type="submit"
-          className="py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700"
+          className="py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
         >
           {proyecto.id ? "Actualizar" : "Crear"}
         </button>
         <button
-          className="py-2 px-4 bg-red-600 text-white font-semibold rounded-md shadow-md hover:bg-red-700"
+          className="py-2 px-4 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700"
           onClick={() => useSideEditorState.setIsEditing(false)}
         >
           Cancelar

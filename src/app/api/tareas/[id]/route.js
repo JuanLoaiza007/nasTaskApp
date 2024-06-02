@@ -1,70 +1,49 @@
 import { NextResponse } from "next/server";
 import { conn } from "@/app/libs/postgres";
 
+// GET a tarea with id
 export async function GET(request, { params }) {
   try {
-    await conn.connect();
-    const result = await conn.query(`SELECT * FROM tarea WHERE id = $1`, [
-      params.id,
-    ]);
-    await conn.clean();
-
-    return NextResponse.json(result.rows[0]);
+    const result = await conn`SELECT * FROM tarea WHERE id = ${params.id}`;
+    return NextResponse.json(result);
   } catch (error) {
-    return NextResponse.json(
-      { message: "Producto no encontrado" },
-      { status: 404 }
-    );
+    return NextResponse.json({ error: error.message });
   }
 }
 
+// PUT update a tarea with id
 export async function PUT(request, { params }) {
   try {
-    const data = await request.json();
+    const { proyecto_id, nombre, descripcion, fecha_terminacion } =
+      await request.json();
 
-    if (!data || Object.keys(data).length === 0) {
-      return NextResponse.json(
-        { message: "No hay datos para actualizar" },
-        { status: 400 }
-      );
-    }
+    const tarea = {};
 
-    const setClause = Object.keys(data)
-      .map((key, index) => `${key} = $${index + 1}`)
-      .join(", ");
-    const values = Object.values(data);
+    if (proyecto_id) tarea.proyecto_id = proyecto_id;
+    if (nombre) tarea.nombre = nombre;
+    if (descripcion) tarea.descripcion = descripcion;
+    if (fecha_terminacion) tarea.fecha_terminacion = fecha_terminacion;
 
-    values.push(params.id);
+    const columnsToUpdate = Object.keys(tarea);
 
-    const query = `UPDATE tarea SET ${setClause} WHERE id = $${values.length}`;
-    const result = await conn.query(query, values);
+    await conn`
+      UPDATE tarea
+      SET ${conn(tarea, columnsToUpdate)}
+      WHERE id = ${params.id};
+    `;
 
-    if (result.rowCount === 0) {
-      return NextResponse.json(
-        { message: "No se ha actualizado el producto" },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json({ update: data });
+    return NextResponse.json({ message: "Tarea actualizada" });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Error actualizando el producto" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message });
   }
 }
 
+// DELETE delete a tarea with id
 export async function DELETE(request, { params }) {
   try {
-    await conn.connect();
-    const result = await conn.query(`DELETE FROM tarea WHERE id = $1`, [
-      params.id,
-    ]);
-    await conn.clean();
-
-    return NextResponse.json({ message: "Tarea borrada" }, { status: 200 });
+    await conn`DELETE FROM tarea WHERE id = ${params.id}`;
+    return NextResponse.json({ message: "Tarea eliminada" });
   } catch (error) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message });
   }
 }

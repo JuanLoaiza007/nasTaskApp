@@ -4,10 +4,8 @@ import { conn } from "@/app/libs/postgres";
 // GET all proyecto
 export async function GET(request) {
   try {
-    await conn.connect();
-    const result = await conn.query("SELECT * FROM proyecto");
-    await conn.clean();
-    return NextResponse.json(result.rows);
+    const result = await conn`SELECT * FROM proyecto`;
+    return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
@@ -16,18 +14,23 @@ export async function GET(request) {
 // POST create new proyecto
 export async function POST(request) {
   try {
-    const data = await request.json();
-    const { nombre, descripcion, fecha_terminacion } = data;
+    const { proyecto_id, nombre, descripcion, fecha_terminacion } =
+      await request.json();
 
-    await conn.connect();
-    const result = await conn.query(
-      "INSERT INTO proyecto (nombre, descripcion, fecha_terminacion) VALUES ($1, $2, $3) RETURNING *",
-      [nombre, descripcion, fecha_terminacion]
-    );
-    await conn.clean();
+    const proyecto = {};
 
-    return NextResponse.json(result.rows[0]);
+    if (nombre) proyecto.nombre = nombre;
+    if (descripcion) proyecto.descripcion = descripcion;
+    if (fecha_terminacion) proyecto.fecha_terminacion = fecha_terminacion;
+
+    await conn`
+      INSERT INTO proyecto
+      ${conn(proyecto)}`;
+
+    return NextResponse.json({
+      message: "Proyecto creado",
+    });
   } catch (error) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message });
   }
 }

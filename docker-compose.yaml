@@ -2,33 +2,24 @@ version: '3.8'
 
 services:
   app:
+    depends_on:
+      - postgres
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: src/app/Dockerfile
     ports:
       - '3000:3000'
     env_file:
       - .env
 
-  # postgres:
-  #   image: postgres
-  #   restart: always
-  #   environment:
-  #     POSTGRES_USER: root
-  #     POSTGRES_PASSWORD: root
-  #     POSTGRES_DB: root
-  #   ports:
-  #     - '5433:5432'
-  #   volumes:
-  #     - ./database/postgre.sql:/docker-entrypoint-initdb.d/postgre.sql
-
-  # pgadmin:
-  #   depends_on:
-  #     - postgres
-  #   image: dpage/pgadmin4
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
-  #     PGADMIN_DEFAULT_PASSWORD: "admin"
-  #   ports:
-  #     - "8081:80"
+  postgres:
+    restart: always
+    build: 
+      context: .
+      dockerfile: database/Dockerfile
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports: 
+      - "5433:5432"
     

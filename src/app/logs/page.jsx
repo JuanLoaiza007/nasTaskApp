@@ -1,4 +1,4 @@
-import MiniCardLogs from "./MiniCardLogs";
+import MiniCard from "../components/MiniCard";
 import axios from "axios";
 
 async function getLogs() {
@@ -13,10 +13,9 @@ export default async function LogsPage() {
 
   return (
     <>
-      <div className="text-4xl font-bold text-center">Logs</div>
       <div className="">
         {logs.map((log) => (
-          <MiniCardLogs key={log.id} log={log} />
+          <MiniCard key={log.id} data={log} type="log" />
         ))}
       </div>
     </>

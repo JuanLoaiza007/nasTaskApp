@@ -1,4 +1,4 @@
-import MiniCardTarea from "./MiniCardTarea";
+import MiniCard from "@/app/components/MiniCard";
 import axios from "axios";
 
 async function getTareas() {
@@ -15,7 +15,7 @@ export default async function TareasPage() {
     <>
       <div className="">
         {tareas.map((tarea) => (
-          <MiniCardTarea key={tarea.id} tarea={tarea} />
+          <MiniCard key={tarea.id} data={tarea} type="tarea" />
         ))}
       </div>
     </>

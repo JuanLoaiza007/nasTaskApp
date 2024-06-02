@@ -1,4 +1,4 @@
-import MiniCardProyecto from "./MiniCardProyecto";
+import MiniCard from "@/app/components/MiniCard";
 import axios from "axios";
 
 async function getProyectos() {
@@ -15,7 +15,7 @@ export default async function ProyectosPage() {
     <>
       <div className="">
         {proyectos.map((proyecto) => (
-          <MiniCardProyecto key={proyecto.id} proyecto={proyecto} />
+          <MiniCard key={proyecto.id} data={proyecto} type="proyecto" />
         ))}
       </div>
     </>

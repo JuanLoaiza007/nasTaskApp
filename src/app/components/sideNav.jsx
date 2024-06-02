@@ -38,7 +38,7 @@ export default function SideNav() {
         </button>
       </div>
       <div
-        className={`flex flex-col flex-wrap text-center ${
+        className={`flex flex-col mt-2 flex-wrap text-center ${
           showMenu ? "block" : "hidden"
         } md:block`}
       >

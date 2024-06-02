@@ -1,3 +1,4 @@
+# docker-compose.yaml in root
 version: '3.8'
 
 services:
@@ -6,7 +7,7 @@ services:
       - postgres
     build:
       context: .
-      dockerfile: src/app/Dockerfile
+      dockerfile: next.dockerfile
     ports:
       - '3000:3000'
     env_file:
@@ -16,7 +17,7 @@ services:
     restart: always
     build: 
       context: .
-      dockerfile: database/Dockerfile
+      dockerfile: database/postgre.dockerfile
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root

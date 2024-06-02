@@ -62,13 +62,13 @@ RETURNS TRIGGER AS $$
 BEGIN
     IF TG_OP = 'INSERT' THEN
         INSERT INTO logs (entidad, entidad_id, operacion, detalles) 
-        VALUES ('tarea', NEW.id, 'CREACION', CONCAT('La tarea con ID: ', NEW.id, ', Nombre: ', NEW.nombre, 'perteneciente al Proyecto con ID: ', NEW.proyecto_id, ', fue creada.'));
+        VALUES ('tarea', NEW.id, 'CREACION', CONCAT('La tarea con ID: ', NEW.id, ', Nombre: ', NEW.nombre, ' perteneciente al Proyecto con ID: ', NEW.proyecto_id, ', fue creada.'));
     ELSIF TG_OP = 'UPDATE' THEN
         INSERT INTO logs (entidad, entidad_id, operacion, detalles) 
-        VALUES ('tarea', NEW.id, 'MODIFICACION', CONCAT('La tarea con ID: ', NEW.id, ', Nombre: ', NEW.nombre, 'perteneciente al Proyecto con ID: ', NEW.proyecto_id, ', fue modificada.'));
+        VALUES ('tarea', NEW.id, 'MODIFICACION', CONCAT('La tarea con ID: ', NEW.id, ', Nombre: ', NEW.nombre, ' perteneciente al Proyecto con ID: ', NEW.proyecto_id, ', fue modificada.'));
     ELSIF TG_OP = 'DELETE' THEN
         INSERT INTO logs (entidad, entidad_id, operacion, detalles) 
-        VALUES ('tarea', OLD.id, 'BORRADO', CONCAT('La tarea con ID: ', OLD.id, ', Nombre: ', OLD.nombre, 'perteneciente al Proyecto con ID: ', OLD.proyecto_id, ', fue borrada.'));
+        VALUES ('tarea', OLD.id, 'BORRADO', CONCAT('La tarea con ID: ', OLD.id, ', Nombre: ', OLD.nombre, ' perteneciente al Proyecto con ID: ', OLD.proyecto_id, ', fue borrada.'));
     END IF;
     RETURN NEW;
 END;

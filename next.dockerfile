@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["sh", "-c", "while ! nc -z postgres 5432; do sleep 1 && echo '>Reintentando conexion con BD...'; done; echo '> Conexion establecida con la BD!' && npm run dev"]

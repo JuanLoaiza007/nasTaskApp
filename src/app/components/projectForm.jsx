@@ -59,6 +59,30 @@ export default function ProjectForm({ proyecto }) {
     router.refresh();
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault(); // No reiniciar la página
+
+    try {
+      if (!proyecto.id) {
+        alert("No se puede eliminar una tarea sin un id");
+        return;
+      }
+      else {
+        const res = await axios.delete(`/api/proyectos/${proyecto.id}`);
+        console.log(`El resultado es: ${res}`);
+      }
+    }
+    catch (error) {
+      alert("Ha ocurrido un error, porfavor intente de nuevo.");
+      console.log(`El error es: ${error}`);
+      return;
+    }
+
+      useSideEditorState.setIsEditing(false);
+      router.push("/proyectos");
+      router.refresh();
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -112,9 +136,9 @@ export default function ProjectForm({ proyecto }) {
         </button>
         <button
           className="py-2 px-4 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700"
-          onClick={() => useSideEditorState.setIsEditing(false)}
+          onClick={handleDelete}
         >
-          Cancelar
+          {proyecto.id ? "Eliminar" : "Cancelar"}
         </button>
       </div>
     </form>

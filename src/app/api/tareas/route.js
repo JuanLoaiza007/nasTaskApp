@@ -4,30 +4,34 @@ import { conn } from "@/app/libs/postgres";
 // GET all tareas
 export async function GET(request) {
   try {
-    await conn.connect();
-    const result = await conn.query("SELECT * FROM tarea");
-    await conn.clean();
-    return NextResponse.json(result.rows);
+    const result = await conn`SELECT * FROM tarea`;
+    return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
 
-// POST create new tarea
+// POST a new tarea
 export async function POST(request) {
   try {
-    const data = await request.json();
-    const { proyecto_id, nombre, descripcion, fecha_terminacion } = data;
+    const { proyecto_id, nombre, descripcion, fecha_terminacion } =
+      await request.json();
 
-    await conn.connect();
-    const result = await conn.query(
-      "INSERT INTO tarea (proyecto_id, nombre, descripcion, fecha_terminacion) VALUES ($1, $2, $3, $4) RETURNING *",
-      [proyecto_id, nombre, descripcion, fecha_terminacion]
-    );
-    await conn.clean();
+    const tarea = {};
 
-    return NextResponse.json(result.rows[0]);
+    if (proyecto_id) tarea.proyecto_id = proyecto_id;
+    if (nombre) tarea.nombre = nombre;
+    if (descripcion) tarea.descripcion = descripcion;
+    if (fecha_terminacion) tarea.fecha_terminacion = fecha_terminacion;
+
+    await conn`
+      INSERT INTO tarea
+      ${conn(tarea)}`;
+
+    return NextResponse.json({
+      message: "Tarea creada",
+    });
   } catch (error) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message });
   }
 }

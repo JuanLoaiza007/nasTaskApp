@@ -11,9 +11,9 @@
   "dependencies": {
     "axios": "^1.7.2",
     "next": "14.2.3",
+    "postgres": "^3.4.4",
     "react": "^18",
     "react-dom": "^18",
-    "serverless-postgres": "^2.1.1",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

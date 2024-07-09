@@ -1,22 +1,25 @@
-import MiniCardTarea from "./MiniCardTarea";
+import MiniCard from "@/app/components/MiniCard";
 import axios from "axios";
 
-async function getProyectos() {
-  const { data } = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/tareas`
-  );
-  return data;
+async function getTareas() {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/tareas`
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default async function TareasPage() {
-  const tareas = await getProyectos();
+  const tareas = await getTareas();
 
   return (
     <>
-      <div className="text-4xl font-bold text-center">Tareas</div>
       <div className="">
         {tareas.map((tarea) => (
-          <MiniCardTarea key={tarea.id} tarea={tarea} />
+          <MiniCard key={tarea.id} data={tarea} type="tarea" />
         ))}
       </div>
     </>
